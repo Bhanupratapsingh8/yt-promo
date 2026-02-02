@@ -5,24 +5,11 @@ const path = require("path");
 
 const app = express();
 
-/* =========================
-   BASIC CONFIG
-========================= */
-
-const PORT = process.env.PORT || 10000;
-const MONGO_URI = process.env.MONGO_URI || process.env.MONGODB_URI;
-
-if (!MONGO_URI) {
-  console.error("❌ MongoDB URI not found in environment variables");
-  process.exit(1);
-}
-
-/* =========================
-   MIDDLEWARE
-========================= */
-
-app.use(express.json());
+/* =======================
+   BASIC MIDDLEWARE
+======================= */
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use(
   session({
@@ -32,58 +19,50 @@ app.use(
   })
 );
 
-/* =========================
+/* =======================
    VIEW ENGINE
-========================= */
-
+======================= */
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-/* =========================
-   MONGODB CONNECTION
-========================= */
+/* =======================
+   STATIC FILES
+======================= */
+app.use(express.static(path.join(__dirname, "public")));
+
+/* =======================
+   DATABASE CONNECTION
+======================= */
+const MONGO_URI = process.env.MONGO_URI || process.env.MONGODB_URI;
 
 mongoose
   .connect(MONGO_URI)
-  .then(() => {
-    console.log("✅ MongoDB connected");
-  })
-  .catch((err) => {
-    console.error("❌ MongoDB connection error:", err.message);
-  });
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.error("❌ MongoDB error:", err));
 
-/* =========================
+/* =======================
    ROUTES
-========================= */
+======================= */
+const authRoutes = require("./routes/auth");
+app.use("/auth", authRoutes);
 
-// HOME PAGE
+// HOME
 app.get("/", (req, res) => {
-  res.render("home"); // <-- THIS SHOWS home.ejs
+  res.render("home");
 });
 
-// LOGIN PAGE
-app.get("/login", (req, res) => {
-  res.render("login");
-});
-
-// REGISTER PAGE
-app.get("/register", (req, res) => {
-  res.render("register");
-});
-
-// DASHBOARD (example protected page)
+// DASHBOARD (protected)
 app.get("/dashboard", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect("/auth/login");
+  }
   res.render("dashboard");
 });
 
-// HEALTH CHECK (optional but useful)
-app.get("/health", (req, res) => {
-  res.status(200).json({ status: "OK", message: "Server is healthy" });
-});
-
-/* =========================
+/* =======================
    SERVER START
-========================= */
+======================= */
+const PORT = process.env.PORT || 10000;
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
