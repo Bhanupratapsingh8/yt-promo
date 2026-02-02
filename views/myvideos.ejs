@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Videos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <span class="navbar-brand">My Videos</span>
+    <a href="/dashboard" class="btn btn-secondary btn-sm">Back</a>
+  </div>
+</nav>
+
+<div class="container mt-4">
+
+  <% if (videos.length === 0) { %>
+    <div class="alert alert-info">
+      You haven’t uploaded any videos yet.
+    </div>
+  <% } %>
+
+  <% videos.forEach(video => { %>
+    <div class="card shadow mb-3">
+      <div class="card-body">
+
+        <h5><%= video.title %></h5>
+
+        <p class="mb-1">
+          <strong>Uploaded:</strong>
+          <%= new Date(video.createdAt).toLocaleString() %>
+        </p>
+
+        <p class="mb-1">
+          <strong>Total Views:</strong> <%= video.views %>
+        </p>
+
+        <% if (video.promoted) { %>
+          <span class="badge bg-success">
+            Promoted (<%= video.promoViews %> / <%= video.promoTarget %>)
+          </span>
+        <% } else { %>
+          <a
+            href="/video/promote/<%= video._id %>"
+            class="btn btn-warning btn-sm">
+            Promote
+          </a>
+        <% } %>
+
+        <% if (video.isAdminVideo) { %>
+          <span class="badge bg-primary ms-2">Admin Video</span>
+        <% } %>
+
+      </div>
+    </div>
+  <% }) %>
+
+</div>
+
+</body>
+</html>

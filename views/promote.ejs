@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Promote Video</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+<div class="container mt-5">
+  <div class="card shadow p-4">
+    <h4>Promote: <%= video.title %></h4>
+
+    <p>Your Coins: <strong><%= user.coins %></strong></p>
+
+    <form action="/video/promote/<%= video._id %>" method="POST">
+      <label>Select Promotion Package</label>
+
+      <select name="package" class="form-select mb-3">
+        <option value="100">100 views → 100 coins</option>
+        <option value="500">500 views → 500 coins</option>
+        <option value="1000">1000 views → 1000 coins</option>
+        <option value="2000">2000 views → 2000 coins</option>
+        <option value="3000">3000 views → 3000 coins</option>
+        <option value="5000">5000 views → 5000 coins</option>
+        <option value="10000">10000 views → 10000 coins</option>
+        <option value="15000">15000 views → 15000 coins</option>
+        <option value="20000">20000 views → 20000 coins</option>
+      </select>
+
+      <% if (user.coins < 100) { %>
+        <p class="text-danger">
+          ❌ Not enough coins.
+          <a href="/video/watch">Earn more coins</a>
+        </p>
+      <% } else { %>
+        <button class="btn btn-success">Start Promotion</button>
+      <% } %>
+    </form>
+
+    <a href="/video/my-videos" class="btn btn-secondary mt-3">Back</a>
+  </div>
+</div>
+</body>
+</html>

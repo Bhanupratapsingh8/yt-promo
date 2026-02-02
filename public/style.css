@@ -1,0 +1,51 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f5f7fb;
+  margin: 0;
+}
+
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(
+      rgba(0,0,0,0.6),
+      rgba(0,0,0,0.6)
+    ),
+    url("https://images.unsplash.com/photo-1515378791036-0648a3ef77b2");
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.hero-content {
+  max-width: 700px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-top: 15px;
+}
+
+.section {
+  padding: 60px 0;
+}
+
+.card {
+  border-radius: 16px;
+}
+
+.btn {
+  border-radius: 10px;
+}
+
+footer {
+  background: #111;
+  color: #aaa;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+}

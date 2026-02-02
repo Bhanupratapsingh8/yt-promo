@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Video</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+<div class="container mt-5">
+  <div class="card shadow p-4">
+    <h4>Add Video</h4>
+
+    <form action="/video/add" method="POST">
+      <div class="mb-3">
+        <label>Video Title</label>
+        <input type="text" name="title" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label>YouTube Link</label>
+        <input type="text" name="youtubeLink" class="form-control" required>
+      </div>
+
+      <% if (user.email !== "bhanupratapsingh4459@gmail.com") { %>
+        <div class="mb-3">
+          <label>Promotion Package (Optional)</label>
+          <select name="promoCoins" class="form-select">
+            <option value="0">No Promotion</option>
+            <option value="100">100 views – 100 coins</option>
+            <option value="500">500 views – 500 coins</option>
+            <option value="1000">1000 views – 1000 coins</option>
+            <option value="2000">2000 views – 2000 coins</option>
+            <option value="5000">5000 views – 5000 coins</option>
+            <option value="10000">10000 views – 10000 coins</option>
+            <option value="20000">20000 views – 20000 coins</option>
+          </select>
+        </div>
+      <% } else { %>
+        <p class="text-success">
+          Admin video → Auto promoted to 100,000 views
+        </p>
+      <% } %>
+
+      <button class="btn btn-primary">Submit</button>
+      <a href="/dashboard" class="btn btn-secondary">Back</a>
+    </form>
+  </div>
+</div>
+</body>
+</html>
