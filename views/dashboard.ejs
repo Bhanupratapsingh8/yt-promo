@@ -2,26 +2,12 @@
 <html>
 <head>
   <title>Dashboard</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<body>
+  <h2>Welcome <%= user %> 🎉</h2>
 
-<body class="bg-light">
-<div class="container mt-4">
-  <h4>Welcome, <%= user.username %></h4>
+  <p>You are logged in.</p>
 
-  <% if (user.email !== "bhanupratapsingh4459@gmail.com") { %>
-    <p>Your Coins: <strong><%= user.coins %></strong></p>
-  <% } else { %>
-    <p class="text-success">Admin Account</p>
-  <% } %>
-
-  <a href="/video/add" class="btn btn-primary mb-2">Add Video</a>
-  <a href="/video/watch" class="btn btn-success mb-2">Watch & Earn</a>
-  <a href="/video/my-videos" class="btn btn-warning mb-2">My Videos</a>
-
-  <% if (user.email === "bhanupratapsingh4459@gmail.com") { %>
-    <a href="/admin/panel" class="btn btn-dark">Admin Panel</a>
-  <% } %>
-</div>
+  <a href="/logout">Logout</a>
 </body>
 </html>

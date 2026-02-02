@@ -1,160 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>YT Promo | Grow Your YouTube</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+  <title>YT Promo</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-
     body {
+      margin: 0;
+      font-family: Arial;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      min-height: 100vh;
+      color: white;
+      text-align: center;
     }
-
-    header {
-      padding: 20px 50px;
+    nav {
+      padding: 20px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
     }
-
-    header h1 {
-      font-size: 26px;
-      font-weight: 700;
-      color: #ff4d4d;
-    }
-
-    nav a {
-      color: #fff;
+    a {
+      color: white;
+      margin-left: 15px;
       text-decoration: none;
-      margin-left: 20px;
-      font-weight: 500;
-      transition: 0.3s;
+      font-weight: bold;
     }
-
-    nav a:hover {
-      color: #ff4d4d;
-    }
-
     .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 100px 20px;
+      margin-top: 120px;
     }
-
-    .hero h2 {
-      font-size: 48px;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 18px;
-      max-width: 600px;
-      line-height: 1.6;
-      margin-bottom: 40px;
-      opacity: 0.9;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .buttons a {
-      padding: 14px 32px;
+    .btn {
+      padding: 12px 25px;
       border-radius: 30px;
-      text-decoration: none;
+      border: none;
       font-size: 16px;
-      font-weight: 600;
-      transition: 0.3s;
+      margin: 10px;
+      cursor: pointer;
     }
-
-    .btn-primary {
-      background: #ff4d4d;
-      color: #fff;
+    .btn-red {
+      background: #ff5252;
+      color: white;
     }
-
-    .btn-primary:hover {
-      background: #ff2e2e;
-    }
-
-    .btn-secondary {
-      border: 2px solid #fff;
-      color: #fff;
-    }
-
-    .btn-secondary:hover {
-      background: #fff;
-      color: #000;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      opacity: 0.7;
-    }
-
-    @media (max-width: 768px) {
-      .hero h2 {
-        font-size: 36px;
-      }
-
-      header {
-        flex-direction: column;
-        gap: 10px;
-      }
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
     }
   </style>
 </head>
-
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <h1>YT Promo</h1>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/login">Login</a>
-      <a href="/register">Register</a>
-    </nav>
-  </header>
+<nav>
+  <h2>YT Promo</h2>
+  <div>
+    <a href="/">Home</a>
+    <a href="/auth/login">Login</a>
+    <a href="/auth/register">Register</a>
+  </div>
+</nav>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <h2>Grow Your YouTube Channel 🚀</h2>
-    <p>
-      Promote your videos, gain real engagement, and boost your YouTube presence
-      using our smart promotion system. Simple. Fast. Effective.
-    </p>
-
-    <div class="buttons">
-      <a href="/register" class="btn-primary">Get Started</a>
-      <a href="/login" class="btn-secondary">Login</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    © <%= new Date().getFullYear() %> YT Promo. All rights reserved.
-  </footer>
+<div class="hero">
+  <h1>Grow Your YouTube Channel 🚀</h1>
+  <p>Promote your videos and gain real engagement.</p>
+  <a href="/auth/register"><button class="btn btn-red">Get Started</button></a>
+  <a href="/auth/login"><button class="btn btn-outline">Login</button></a>
+</div>
 
 </body>
 </html>
