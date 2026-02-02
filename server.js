@@ -1,43 +1,50 @@
-// =====================
-// IMPORTS
-// =====================
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const path = require("path");
-require("dotenv").config();
 
-// =====================
-// APP INIT
-// =====================
 const app = express();
 
-// =====================
-// MIDDLEWARE
-// =====================
-app.use(express.urlencoded({ extended: true }));
+/* =========================
+   BASIC CONFIG
+========================= */
+
+const PORT = process.env.PORT || 10000;
+const MONGO_URI = process.env.MONGO_URI || process.env.MONGODB_URI;
+
+if (!MONGO_URI) {
+  console.error("❌ MongoDB URI not found in environment variables");
+  process.exit(1);
+}
+
+/* =========================
+   MIDDLEWARE
+========================= */
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || "yt-promo-secret",
+    secret: process.env.SESSION_SECRET || "ytpromo_secret",
     resave: false,
     saveUninitialized: false,
   })
 );
 
-// =====================
-// VIEW ENGINE
-// =====================
+/* =========================
+   VIEW ENGINE
+========================= */
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-app.use(express.static(path.join(__dirname, "public")));
 
-// =====================
-// MONGODB CONNECTION (IMPORTANT PART)
-// =====================
+/* =========================
+   MONGODB CONNECTION
+========================= */
+
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(MONGO_URI)
   .then(() => {
     console.log("✅ MongoDB connected");
   })
@@ -45,17 +52,39 @@ mongoose
     console.error("❌ MongoDB connection error:", err.message);
   });
 
-// =====================
-// ROUTES
-// =====================
+/* =========================
+   ROUTES
+========================= */
+
+// HOME PAGE
 app.get("/", (req, res) => {
-  res.send("YT Promo app is running 🚀");
+  res.render("home"); // <-- THIS SHOWS home.ejs
 });
 
-// =====================
-// PORT (RENDER SAFE)
-// =====================
-const PORT = process.env.PORT || 3000;
+// LOGIN PAGE
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+// REGISTER PAGE
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
+// DASHBOARD (example protected page)
+app.get("/dashboard", (req, res) => {
+  res.render("dashboard");
+});
+
+// HEALTH CHECK (optional but useful)
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "OK", message: "Server is healthy" });
+});
+
+/* =========================
+   SERVER START
+========================= */
+
 app.listen(PORT, () => {
-  console.log(`✅ Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
