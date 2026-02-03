@@ -1,49 +1,32 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-/* =======================
-   LOGIN PAGE
-======================= */
-router.get("/login", (req, res) => {
-  res.render("login");
+/* GET login page */
+router.get('/login', (req, res) => {
+  res.render('login');
 });
 
-/* =======================
-   REGISTER PAGE
-======================= */
-router.get("/register", (req, res) => {
-  res.render("register");
+/* GET register page */
+router.get('/register', (req, res) => {
+  res.render('register');
 });
 
-/* =======================
-   REGISTER (POST)
-======================= */
-router.post("/register", (req, res) => {
-  // dummy user session (for now)
-  req.session.user = {
-    email: req.body.email || "test@user.com",
-  };
-
-  res.redirect("/dashboard");
+/* POST register */
+router.post('/register', (req, res) => {
+  // TEMP: no DB logic yet
+  res.redirect('/auth/login');
 });
 
-/* =======================
-   LOGIN (POST)
-======================= */
-router.post("/login", (req, res) => {
-  req.session.user = {
-    email: req.body.email || "test@user.com",
-  };
-
-  res.redirect("/dashboard");
+/* POST login */
+router.post('/login', (req, res) => {
+  // TEMP: no auth logic yet
+  res.redirect('/');
 });
 
-/* =======================
-   LOGOUT
-======================= */
-router.get("/logout", (req, res) => {
+/* Logout */
+router.get('/logout', (req, res) => {
   req.session.destroy(() => {
-    res.redirect("/");
+    res.redirect('/');
   });
 });
 
