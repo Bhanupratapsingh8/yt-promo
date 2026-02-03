@@ -1,65 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>YT Promo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: Arial;
+      font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: white;
-      text-align: center;
     }
-    nav {
-      padding: 20px;
+    header {
       display: flex;
       justify-content: space-between;
+      padding: 20px 40px;
     }
-    a {
+    header h1 {
+      color: #ff4d4d;
+    }
+    nav a {
       color: white;
-      margin-left: 15px;
+      margin-left: 20px;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 500;
     }
     .hero {
-      margin-top: 120px;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 48px;
+    }
+    .hero p {
+      max-width: 600px;
+      opacity: 0.9;
+    }
+    .buttons {
+      margin-top: 30px;
     }
     .btn {
-      padding: 12px 25px;
+      padding: 14px 30px;
       border-radius: 30px;
-      border: none;
+      text-decoration: none;
       font-size: 16px;
       margin: 10px;
-      cursor: pointer;
+      display: inline-block;
     }
-    .btn-red {
-      background: #ff5252;
+    .btn-primary {
+      background: #ff4d4d;
       color: white;
     }
     .btn-outline {
-      background: transparent;
-      color: white;
       border: 2px solid white;
+      color: white;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      opacity: 0.7;
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <h2>YT Promo</h2>
-  <div>
+<header>
+  <h1>YT Promo</h1>
+  <nav>
     <a href="/">Home</a>
     <a href="/auth/login">Login</a>
     <a href="/auth/register">Register</a>
-  </div>
-</nav>
+  </nav>
+</header>
 
-<div class="hero">
-  <h1>Grow Your YouTube Channel 🚀</h1>
-  <p>Promote your videos and gain real engagement.</p>
-  <a href="/auth/register"><button class="btn btn-red">Get Started</button></a>
-  <a href="/auth/login"><button class="btn btn-outline">Login</button></a>
-</div>
+<section class="hero">
+  <h2>Grow Your YouTube Channel 🚀</h2>
+  <p>Promote your videos, gain real engagement, and boost your channel faster.</p>
+
+  <div class="buttons">
+    <a href="/auth/register" class="btn btn-primary">Get Started</a>
+    <a href="/auth/login" class="btn btn-outline">Login</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 YT Promo. All rights reserved.
+</footer>
 
 </body>
 </html>
